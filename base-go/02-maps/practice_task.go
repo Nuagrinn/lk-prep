@@ -16,11 +16,31 @@ type CategoryStat struct {
 
 func BuildCategoryStats(purchases []Purchase) []CategoryStat {
 	// TODO:
-	// 1. For each category, count total revenue.
-	// 2. For each category, count unique buyers by UserID.
-	// 3. Return one CategoryStat per category.
-	// Result order is not important.
-	return nil
+
+	categoryStats := make([]CategoryStat, 0, len(purchases))
+
+	uniqueCategory := make(map[string]struct{}, len(purchases))
+	for _, p := range purchases {
+		if _, ok := uniqueCategory[p.Category]; !ok {
+			uniqueCategory[p.Category] = struct{}{}
+		}
+	}
+
+	for k, _ := range uniqueCategory {
+		catStatEntry := CategoryStat{}
+		catStatEntry.Category = k
+		catStatEntryUniqueUsers := make(map[string]struct{}, len(uniqueCategory))
+		for _, purchase := range purchases {
+			if purchase.Category == k {
+				catStatEntry.Revenue += purchase.Amount
+				catStatEntryUniqueUsers[purchase.UserID] = struct{}{}
+			}
+		}
+		catStatEntry.Buyers = len(catStatEntryUniqueUsers)
+		categoryStats = append(categoryStats, catStatEntry)
+	}
+
+	return categoryStats
 }
 
 func main() {
@@ -31,6 +51,7 @@ func main() {
 		{UserID: "u2", Category: "games", Amount: 200},
 		{UserID: "u3", Category: "games", Amount: 50},
 	}
-	
+
 	fmt.Printf("%+v\n", BuildCategoryStats(purchases))
+
 }

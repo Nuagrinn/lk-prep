@@ -13,7 +13,7 @@
 | Раздел | Готовые материалы |
 |---|---:|
 | Code review Go | 6 |
-| Базовый Go | 6 |
+| Базовый Go | 3 |
 | Базы данных | 4 |
 | Лайвкодинг и практика | 2 |
 | Собеседования | 1 |
@@ -23,7 +23,7 @@
 | Раздел | Планируемые материалы |
 |---|---:|
 | Code review Go | 5 |
-| Базовый Go | 3 |
+| Базовый Go | 5 |
 | Базы данных | 3 |
 | Лайвкодинг и практика | 3 |
 | System Design | 1 |
@@ -55,7 +55,7 @@
 | B05 | Интерфейсы, nil interface, method set, duck typing | - | - | Планируется |
 | B06 | Указатели: value vs pointer, nil, escape analysis, receiver, shared mutable state | - | - | Планируется |
 | B07 | Ошибки в Go: error interface, wrapping, errors.Is/As, sentinel/custom errors, panic vs error | - | - | Планируется |
-| B08 | Строки: immutable bytes, rune/UTF-8, len, slicing, conversions, strings.Builder | - | - | Планируется |
+| B08 | Строки: immutable bytes, rune/UTF-8, len, slicing, conversions, strings.Builder | [internals.md](base-go/08-strings/internals.md), [review.md](base-go/08-strings/review.md) | [practice_output.go](base-go/08-strings/practice_output.go) | Готово |
 
 ## Базы данных
 
@@ -84,14 +84,6 @@
 | # | Тема | Материал | Статус |
 |---|---|---|---|
 | A01 | Ответы на вопросы Go/backend собеседования | [go-backend-interview-questions.md](interview-answers/go-backend-interview-questions.md) | Готово |
-
-## Как пользоваться
-
-1. Сначала самостоятельно ревьюить [review_task.go](review_task.go) или практический файл из нужной темы.
-2. Потом сверяться с конспектом по соответствующей категории.
-3. Новые теоретические материалы добавлять отдельными `review.md` и ссылкой в таблицу своего раздела.
-4. Кодовые эксперименты запускать прямо в этом модуле через `go test ./...`.
-
 
 ## System Design
 
