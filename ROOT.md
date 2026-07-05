@@ -26,7 +26,7 @@
 | Базовый Go | 5 |
 | Базы данных | 3 |
 | Лайвкодинг и практика | 3 |
-| System Design | 1 |
+| System Design | 2 |
 
 ## Code Review Go
 
@@ -90,3 +90,4 @@
 | # | Тема | Материал | Практика | Статус |
 |---|---|---|---|---|
 | SD01 | System Design: Transactional Outbox | - | - | Планируется |
+| SD02 | System Design: rate limiting — token bucket, leaky bucket, распределённые счётчики, backpressure | - | - | Планируется |
