@@ -16,7 +16,7 @@
 | Базовый Go | 3 |
 | Базы данных | 4 |
 | Лайвкодинг и практика | 2 |
-| Собеседования | 1 |
+| Собеседования | 2 |
 
 ## Быстрый срез: планируется
 
@@ -84,6 +84,7 @@
 | # | Тема | Материал | Статус |
 |---|---|---|---|
 | A01 | Ответы на вопросы Go/backend собеседования | [go-backend-interview-questions.md](interview-answers/go-backend-interview-questions.md) | Готово |
+| A02 | Литература для senior backend базы | [senior-engineer-reading-list.md](interview-answers/senior-engineer-reading-list.md) | Готово |
 
 ## System Design
 
