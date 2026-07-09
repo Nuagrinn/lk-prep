@@ -128,6 +128,14 @@ Follow the existing layout:
 - Компьютерные основы: `cs-fundamentals/NN-topic-slug/internals.md` (deep-dive
   style, not Go-specific; cross-link to the relevant applied Go topic instead
   of duplicating language-specific detail there)
+- Лайвкодинг и практика (tracked task list, row LC06): `live-coding/tasks.md`
+  is just a solved/unsolved status table with one link per task - no task
+  content lives there. Each task is its own runnable `live-coding/*.go` file:
+  condition, function signature, and worked example(s) as a doc comment, a
+  stub for the function, and a `main()` that runs every example and prints
+  OK/MISMATCH against the exact expected output. Add new tasks as a new
+  `.go` file plus one new row in `tasks.md`, not by appending to the table's
+  own text.
 
 Use natural, readable slugs. Existing Russian content is fine; file paths are
 mostly Latin slugs today, so prefer that style unless there is a reason not to.
