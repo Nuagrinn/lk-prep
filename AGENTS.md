@@ -33,6 +33,14 @@ LearnKeeper parses topic rows from Markdown tables under these section headings:
 - `## Базы данных`
 - `## Лайвкодинг и практика`
 - `## Собеседования`
+- `## System Design`
+- `## Компьютерные основы`
+
+This list documents the sections currently in use, not a hardcoded allow-list:
+LearnKeeper's `ROOT.md` parser accepts any `## Heading` (see `_section_heading`
+in `app/core/repo.py`) as a new section, except headings starting with
+"Быстрый" (used for the summary tables above). Still, add new sections here
+when you create one, so the contract stays truthful for other agents.
 
 Supported table formats:
 
@@ -66,6 +74,8 @@ Current prefixes:
 - `DB01`, `DB02`, ... for Базы данных
 - `LC01`, `LC02`, ... for Лайвкодинг и практика
 - `A01`, `A02`, ... for Собеседования
+- `SD01`, `SD02`, ... for System Design
+- `CS01`, `CS02`, ... for Компьютерные основы
 
 When adding a topic, use the next id in the relevant section. Do not reuse ids for
 a different topic. Do not renumber old topics just to make the table prettier.
@@ -115,6 +125,9 @@ Follow the existing layout:
 - Базовый Go: `base-go/NN-topic-slug/review.md` and optional practice file
 - Базы данных: `database/NN-topic-slug/review.md`
 - Собеседования: `interview-answers/...md`
+- Компьютерные основы: `cs-fundamentals/NN-topic-slug/internals.md` (deep-dive
+  style, not Go-specific; cross-link to the relevant applied Go topic instead
+  of duplicating language-specific detail there)
 
 Use natural, readable slugs. Existing Russian content is fine; file paths are
 mostly Latin slugs today, so prefer that style unless there is a reason not to.

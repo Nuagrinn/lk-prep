@@ -16,7 +16,8 @@
 | Базовый Go | 3 |
 | Базы данных | 4 |
 | Лайвкодинг и практика | 2 |
-| Собеседования | 2 |
+| Собеседования | 3 |
+| Компьютерные основы | 1 |
 
 ## Быстрый срез: планируется
 
@@ -27,6 +28,7 @@
 | Базы данных | 3 |
 | Лайвкодинг и практика | 3 |
 | System Design | 2 |
+| Компьютерные основы | 1 |
 
 ## Code Review Go
 
@@ -85,6 +87,7 @@
 |---|---|---|---|
 | A01 | Ответы на вопросы Go/backend собеседования | [go-backend-interview-questions.md](interview-answers/go-backend-interview-questions.md) | Готово |
 | A02 | Литература для senior backend базы | [senior-engineer-reading-list.md](interview-answers/senior-engineer-reading-list.md) | Готово |
+| A03 | Методика долгого усвоения технических знаний | [long-term-learning-methodology.md](interview-answers/long-term-learning-methodology.md) | Готово |
 
 ## System Design
 
@@ -92,3 +95,12 @@
 |---|---|---|---|---|
 | SD01 | System Design: Transactional Outbox | - | - | Планируется |
 | SD02 | System Design: rate limiting — token bucket, leaky bucket, распределённые счётчики, backpressure | - | - | Планируется |
+
+## Компьютерные основы
+
+Общая computer-science база не привязанная к конкретному языку: как устроены низкоуровневые механизмы, которые потом всплывают в любом языке и системе. Сюда не заводим прикладные Go-темы (для них есть "Базовый Go") — только подкапотные основы.
+
+| # | Тема | Материал | Практика | Статус |
+|---|---|---|---|---|
+| CS01 | Кодировки текста: UTF-8 под капотом, побитовая арифметика, overlong encoding, byte/rune/grapheme, сравнение с другими языками | [internals.md](cs-fundamentals/01-text-encoding/internals.md) | - | Готово |
+| CS02 | Процессы и потоки на уровне ОС: контекст-свитчинг, разделяемая память, IPC | - | - | Планируется |
