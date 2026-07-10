@@ -1,4 +1,4 @@
-﻿# Agent Contract for interview-review
+﻿# Agent Contract for lk-prep
 
 This repository is a structured source of study materials for LearnKeeper. Other
 agents may edit the materials, but they must preserve the catalog contract below.
@@ -32,9 +32,9 @@ LearnKeeper parses topic rows from Markdown tables under these section headings:
 - `## Базовый Go`
 - `## Базы данных`
 - `## Лайвкодинг и практика`
-- `## Собеседования`
 - `## System Design`
 - `## Компьютерные основы`
+- `## Идиомы и паттерны Go`
 
 This list documents the sections currently in use, not a hardcoded allow-list:
 LearnKeeper's `ROOT.md` parser accepts any `## Heading` (see `_section_heading`
@@ -59,8 +59,11 @@ Supported table formats:
 ```md
 | # | Тема | Материал | Статус |
 |---|---|---|---|
-| A01 | ... | [file.md](path/file.md) | Готово |
+| XX01 | ... | [file.md](path/file.md) | Готово |
 ```
+
+(no section currently uses this exact shape, but the parser supports it - a
+5th "Практика" column is optional)
 
 ## Topic ids
 
@@ -73,9 +76,9 @@ Current prefixes:
 - `B01`, `B02`, ... for Базовый Go
 - `DB01`, `DB02`, ... for Базы данных
 - `LC01`, `LC02`, ... for Лайвкодинг и практика
-- `A01`, `A02`, ... for Собеседования
 - `SD01`, `SD02`, ... for System Design
 - `CS01`, `CS02`, ... for Компьютерные основы
+- `GI01`, `GI02`, ... for Идиомы и паттерны Go
 
 When adding a topic, use the next id in the relevant section. Do not reuse ids for
 a different topic. Do not renumber old topics just to make the table prettier.
@@ -87,6 +90,13 @@ Use only these human-facing statuses in `ROOT.md` unless LearnKeeper is updated:
 - `Готово` -> parsed as `ready`
 - `Планируется` -> parsed as `planned`
 - `В процессе` -> parsed as `learning`
+
+One deliberate exception: topics under `## Идиомы и паттерны Go` stay
+`Планируется` forever even once their material is written and linked.
+LearnKeeper only pulls `ready` topics into quizzes, review scheduling, and
+"Читать материал" - keeping this section `planned` is how it stays a plain
+reference guide and never gets quizzed or scheduled. Do not "fix" this by
+flipping it to `Готово`.
 
 ## Links and material fingerprints
 
@@ -101,6 +111,13 @@ Rules:
 - If you add, move, or rename material files, update the row in `ROOT.md`.
 - Do not put temporary files, generated quiz state, SQLite databases, or bot logs
   into this repository.
+- Do not put personal content (interview notes about real companies/people,
+  private reflections, anything not meant for a public audience) into this
+  repository - it is public. `interview-answers/` used to hold this kind of
+  material (topic ids `A01`-`A04`); it is now gitignored and removed from
+  `ROOT.md` on purpose. Do not recreate an "A01" row or un-gitignore that
+  directory - if similar personal material comes up again, keep it out of
+  this repo entirely (a private note, a different private repo, etc.).
 
 ## Adding a new study topic
 
@@ -124,18 +141,25 @@ Follow the existing layout:
 - Code Review Go: `NN-topic-slug/review.md` and optional `practice_service.go`
 - Базовый Go: `base-go/NN-topic-slug/review.md` and optional practice file
 - Базы данных: `database/NN-topic-slug/review.md`
-- Собеседования: `interview-answers/...md`
 - Компьютерные основы: `cs-fundamentals/NN-topic-slug/internals.md` (deep-dive
   style, not Go-specific; cross-link to the relevant applied Go topic instead
   of duplicating language-specific detail there)
 - Лайвкодинг и практика (tracked task list, row LC06): `live-coding/tasks.md`
   is just a solved/unsolved status table with one link per task - no task
-  content lives there. Each task is its own runnable `live-coding/*.go` file:
-  condition, function signature, and worked example(s) as a doc comment, a
-  stub for the function, and a `main()` that runs every example and prints
-  OK/MISMATCH against the exact expected output. Add new tasks as a new
-  `.go` file plus one new row in `tasks.md`, not by appending to the table's
-  own text.
+  content lives there. Each task is its own runnable file in its own
+  subdirectory - `live-coding/NN-topic-slug/task.go`, not a flat file
+  directly under `live-coding/`. Every task file is `package main` with its
+  own `func main()`; putting more than one such file in the same directory
+  makes `go vet ./...`/`go build ./...` fail with "main redeclared" even
+  though `go run` on a single named file still works, which is why each
+  needs its own subdirectory. Each file carries: condition, function
+  signature, and worked example(s) as a doc comment, a stub for the
+  function, and a `main()` that runs every example and prints OK/MISMATCH
+  against the exact expected output. Add new tasks as a new subdirectory
+  plus one new row in `tasks.md`, not by appending to the table's own text.
+- Идиомы и паттерны Go: `go-idioms/NN-topic-slug/guide.md`. Reference/pattern
+  material ("how idiomatic Go does X and why"), not interview-topic prep -
+  keep the row status `Планируется` per the note in "Status values" above.
 
 Use natural, readable slugs. Existing Russian content is fine; file paths are
 mostly Latin slugs today, so prefer that style unless there is a reason not to.
@@ -164,4 +188,15 @@ LearnKeeper currently depends on:
 - linked file contents -> `topics.material_fingerprint`
 
 If you intentionally change this contract, update LearnKeeper in
-`C:\Users\Vladislav\Desktop\ТГ Бот\interview-review-bot` in the same work session.
+`C:\Users\Vladislav\Desktop\ТГ Бот\learnkeeper-bot` in the same work session
+(this project was renamed from `interview-review-bot`).
+
+## Note: this repository was renamed
+
+This repository used to be called `interview-review` (GitHub repo, local
+folder, `go.mod` module name, and the `INTERVIEW_REVIEW_PATH` env
+var/`interview_review_path` config field in LearnKeeper). It is now `lk-prep`
+everywhere. If you find a stray `interview-review`/`interview_review`
+reference anywhere in this repo or in LearnKeeper that this rename missed,
+treat it as leftover from before the rename and update it to `lk-prep` (or
+the appropriate `lk_prep_*`/`LK_PREP_*` identifier), not as intentional.

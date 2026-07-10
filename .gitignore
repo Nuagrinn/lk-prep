@@ -1,4 +1,7 @@
-﻿# Local IDE/editor state
+﻿# Personal/private content - must never be committed to this public repo
+interview-answers/
+
+# Local IDE/editor state
 .idea/
 .vscode/
 
