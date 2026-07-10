@@ -24,7 +24,7 @@
 |---|---:|
 | Code review Go | 5 |
 | Базовый Go | 5 |
-| Базы данных | 3 |
+| Базы данных | 5 |
 | Лайвкодинг и практика | 3 |
 | System Design | 2 |
 | Компьютерные основы | 1 |
@@ -63,13 +63,15 @@
 
 | # | Тема | Материал | Практика | Статус |
 |---|---|---|---|---|
-| DB01 | PostgreSQL: индексы, планировщик и диагностика проблем | [review.md](database/01-postgresql-indexes-diagnostics/review.md) | - | Готово |
+| DB01 | PostgreSQL: индексы — устройство, типы и цена владения | [review.md](database/01-postgresql-indexes/review.md) | - | Готово |
 | DB02 | PostgreSQL: MVCC, VACUUM, версии строк, память и bloat | [review.md](database/02-postgresql-mvcc-vacuum-bloat/review.md) | - | Готово |
 | DB03 | PostgreSQL: физическое хранение, страницы, buffers, cache и I/O | [review.md](database/03-postgresql-storage-pages-buffers/review.md) | - | Готово |
 | DB04 | PostgreSQL: уровни изоляции, аномалии транзакций и бизнесовые гонки | [review.md](database/04-postgresql-isolation-anomalies/review.md) | - | Готово |
 | DB05 | SQL vs NoSQL: выбор хранилища под задачу | - | - | Планируется |
 | DB06 | Cassandra, Redis, ClickHouse: когда и зачем использовать | - | - | Планируется |
 | DB07 | Массовые операции: delete/update, bloat, locks, батчи, partitioning | - | - | Планируется |
+| DB08 | PostgreSQL: планировщик запросов, статистика и EXPLAIN | - | - | Планируется |
+| DB09 | PostgreSQL: диагностика и эксплуатация индексов в проде | - | - | Планируется |
 
 ## Лайвкодинг и практика
 
