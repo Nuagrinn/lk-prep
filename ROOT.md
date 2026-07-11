@@ -63,11 +63,11 @@
 
 | # | Тема | Материал | Практика | Статус |
 |---|---|---|---|---|
-| DB01 | PostgreSQL: индексы — устройство, типы и цена владения | [review.md](database/01-postgresql-indexes/review.md) | - | Готово |
+| DB01 | PostgreSQL: индексы — устройство, типы и цена владения | - | - | Планируется |
 | DB02 | PostgreSQL: MVCC, VACUUM, версии строк, память и bloat | [review.md](database/02-postgresql-mvcc-vacuum-bloat/review.md) | - | Готово |
 | DB03 | PostgreSQL: физическое хранение, страницы, buffers, cache и I/O | [review.md](database/03-postgresql-storage-pages-buffers/review.md) | - | Готово |
 | DB04 | PostgreSQL: уровни изоляции, аномалии транзакций и бизнесовые гонки | [review.md](database/04-postgresql-isolation-anomalies/review.md) | - | Готово |
-| DB05 | SQL vs NoSQL: выбор хранилища под задачу | - | - | Планируется |
+| DB05 | Модели данных и языки запросов: relational, document, graph | [review.md](database/05-data-models-query-languages/review.md) | - | Готово |
 | DB06 | Cassandra, Redis, ClickHouse: когда и зачем использовать | - | - | Планируется |
 | DB07 | Массовые операции: delete/update, bloat, locks, батчи, partitioning | - | - | Планируется |
 | DB08 | PostgreSQL: планировщик запросов, статистика и EXPLAIN | - | - | Планируется |

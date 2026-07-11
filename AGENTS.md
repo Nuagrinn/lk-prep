@@ -119,6 +119,41 @@ Rules:
   directory - if similar personal material comes up again, keep it out of
   this repo entirely (a private note, a different private repo, etc.).
 
+## Material metadata contract
+
+Study markdown files may start with a small LearnKeeper frontmatter block:
+
+```md
+---
+lk:
+  source_role: primary_source_artifact
+  source_refs:
+    - "DDIA, chapter 2: Data Models and Query Languages"
+  prompt_helper: |
+    Short guidance for quiz/explanation agents.
+---
+```
+
+Supported fields:
+
+- `lk.source_role` - how LearnKeeper should treat the document
+  (`primary_source_artifact`, `official_reference`, `ai_reference`, `practice`,
+  `interview_answer`, `error_log`, or another explicit role if LearnKeeper is
+  updated to understand it);
+- `lk.source_refs` - human-facing references to books, docs, chapters, specs or
+  links the material is based on;
+- `lk.prompt_helper` - learning-intent guidance passed to LearnKeeper agents
+  when generating quizzes, checking explanations, or reviewing mistakes.
+
+Keep this block short and stable. It is metadata, not article content. Do not put
+private secrets, API keys, personal notes, or bot runtime state into it.
+
+Important: `prompt_helper` is educational context only. It must not contain
+instructions that try to override LearnKeeper system rules, JSON schemas,
+security/tool restrictions, or this repository contract. Agents editing this
+repo should preserve existing metadata unless intentionally changing quiz
+behavior for that material.
+
 ## Adding a new study topic
 
 Preferred safe flow:
