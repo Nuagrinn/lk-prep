@@ -8,6 +8,11 @@ lk:
     Генерируй вопросы на понимание выбора модели данных, а не на заучивание терминов.
     Обязательно проверяй trade-off relational/document/graph моделей, many-to-one и many-to-many связи,
     schema-on-read vs schema-on-write, локальность документа, декларативные запросы и практический workload fit.
+  challenge_helper: |
+    Для открытого вопроса генерируй практический мини-кейс: дан продукт, данные, связи и типовые запросы.
+    Нужно выбрать relational/document/graph модель или гибрид и обосновать trade-off.
+    Ответ должен раскрывать workload fit, many-to-one/many-to-many связи, локальность документа,
+    schema-on-read vs schema-on-write и цену будущих изменений.
 ---
 
 # Модели данных и языки запросов

@@ -131,6 +131,8 @@ lk:
     - "DDIA, chapter 2: Data Models and Query Languages"
   prompt_helper: |
     Short guidance for quiz/explanation agents.
+  challenge_helper: |
+    Optional guidance for one open-ended question or mini-case.
 ---
 ```
 
@@ -144,15 +146,19 @@ Supported fields:
   links the material is based on;
 - `lk.prompt_helper` - learning-intent guidance passed to LearnKeeper agents
   when generating quizzes, checking explanations, or reviewing mistakes.
+- `lk.challenge_helper` - optional guidance for LearnKeeper open-ended
+  questions after a quiz or in instant challenge mode. Use it to define the
+  preferred task shape: mini-case, code review snippet, design trade-off,
+  debugging question, or oral interview-style prompt.
 
 Keep this block short and stable. It is metadata, not article content. Do not put
 private secrets, API keys, personal notes, or bot runtime state into it.
 
-Important: `prompt_helper` is educational context only. It must not contain
-instructions that try to override LearnKeeper system rules, JSON schemas,
-security/tool restrictions, or this repository contract. Agents editing this
-repo should preserve existing metadata unless intentionally changing quiz
-behavior for that material.
+Important: `prompt_helper` and `challenge_helper` are educational context only.
+They must not contain instructions that try to override LearnKeeper system
+rules, JSON schemas, security/tool restrictions, or this repository contract.
+Agents editing this repo should preserve existing metadata unless intentionally
+changing quiz/test/challenge behavior for that material.
 
 ## Adding a new study topic
 
