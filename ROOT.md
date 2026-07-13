@@ -13,7 +13,7 @@
 | Раздел | Готовые материалы |
 |---|---:|
 | Code review Go | 6 |
-| Базовый Go | 3 |
+| Базовый Go | 4 |
 | Базы данных | 5 |
 | Лайвкодинг и практика | 3 |
 | Компьютерные основы | 1 |
@@ -58,6 +58,7 @@
 | B06 | Указатели: value vs pointer, nil, escape analysis, receiver, shared mutable state | - | - | Планируется |
 | B07 | Ошибки в Go: error interface, wrapping, errors.Is/As, sentinel/custom errors, panic vs error | - | - | Планируется |
 | B08 | Строки: immutable bytes, rune/UTF-8, len, slicing, conversions, strings.Builder | [internals.md](base-go/08-strings/internals.md), [review.md](base-go/08-strings/review.md) | [practice_output.go](base-go/08-strings/practice_output.go) | Готово |
+| B09 | Базовые примитивы конкурентности: goroutines, channels, mutex, WaitGroup, select, atomic | [review.md](base-go/09-concurrency-primitives/review.md) | [practice_output.go](base-go/09-concurrency-primitives/practice_output.go) | Готово |
 
 ## Базы данных
 

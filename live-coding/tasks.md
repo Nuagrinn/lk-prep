@@ -18,6 +18,7 @@
 |---|---|---|---|
 | LC06-1 | Строки + мапы + слайсы: топ-K частых слов | [01-top-k-frequent-words/top_k_frequent_words.go](01-top-k-frequent-words/top_k_frequent_words.go) | Решено |
 | LC06-2 | Слайсы: сортировка структур по нескольким ключам | [02-sort-products/sort_products.go](02-sort-products/sort_products.go) | Не решено — оба примера дают OK, но это ложноположительно: первый ключ сравнивает Stock напрямую вместо булевого "в наличии/нет", баг не виден на текущих данных примеров |
+| LC06-3 | Примитивы синхронизации + map/slice: конкурентная загрузка и детерминированный merge | [03-release-digest-sync/release_digest_sync.go](03-release-digest-sync/release_digest_sync.go) | Не решено |
 
 ## Как сдать решение
 
