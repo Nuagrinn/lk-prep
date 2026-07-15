@@ -46,11 +46,40 @@
 //   - аккуратная работа с map для dedup и slice для порядка.
 package main
 
+/*
+Решение/проблемы:
+
+Запуск каждого Source в отедльной горутине с контекстом, через wg
+
+собрать слайс пар Item (порядок:эвент), его проще потом отсортировать и мержить результат по циклам
+отдельный метод валидации по правилам мержа. Запись делаем через mutex
+
+отдельные атомик счетчики для ивентов и ошибок
+
+Валидация:
+
+  - Event с пустым ID или пустым UserID игнорируется. (пропускаем через if)
+  - Event.ID глобально дедуплицируется: если такой ID уже был принят из
+    более раннего source/event, повтор игнорируется. (map[int]strunct{} - проверка через сет)
+  - Kind == "like" увеличивает Likes пользователя. (через case)
+  - Kind == "bug" увеличивает Bugs пользователя.
+  - Kind == "label" добавляет Label пользователю. (держать сет и слайс, проверяем сет, либо аппендим, либо нет)
+  - Labels у пользователя должны быть уникальными, но сохранять порядок
+    первого появления.
+  - Digest.AcceptedIDs должен хранить ID принятых событий в порядке merge.
+  - Digest.Users должен быть отсортирован по UserID по возрастанию. (сортируем слайс по id юзеров sortFunc, cmp.Compare)
+
+*/
+
 import (
+	"cmp"
 	"context"
 	"errors"
 	"fmt"
 	"reflect"
+	"slices"
+	"sync"
+	"sync/atomic"
 	"time"
 )
 
@@ -99,22 +128,109 @@ type Digest struct {
 	Users       []UserDigest
 }
 
+type DigAccum struct {
+	ud     UserDigest
+	labels map[string]struct{}
+}
+
+type Pair struct {
+	id string
+	ud UserDigest
+}
+
 func BuildReleaseDigest(ctx context.Context, sources []Source, maxErrors int) (Digest, error) {
 	// TODO: реализуй.
-	//
-	// Подсказка по дизайну:
-	// 1. Создай child context через context.WithCancel.
-	// 2. Запусти goroutine на каждый Source.Load.
-	// 3. Собери результаты в отдельный []sourceResult по индексу source.
-	//    Это проще, чем мутировать итоговые map/slice из разных goroutine.
-	// 4. После завершения загрузки смержи успешные результаты последовательно
-	//    по индексам sources.
-	// 5. Для Users используй map[userID]*accumulator, а в конце собери и
-	//    отсортируй []UserDigest.
-	_ = ctx
-	_ = sources
-	_ = maxErrors
-	return Digest{}, nil
+
+	mu := sync.Mutex{}
+	wg := sync.WaitGroup{}
+	var errCnt atomic.Int64
+	sourceResults := make([][]Event, len(sources))
+	childCtx, cancelChild := context.WithCancel(ctx)
+	defer cancelChild()
+
+	for i, source := range sources {
+		wg.Add(1)
+		go func() {
+			defer wg.Done()
+			result, err := source.Load(childCtx)
+			if err != nil {
+				errCnt.Add(1)
+				if errCnt.Load() > int64(maxErrors) {
+					cancelChild()
+					return
+				}
+			}
+			mu.Lock()
+			defer mu.Unlock()
+			sourceResults[i] = result
+		}()
+	}
+
+	wg.Wait()
+
+	eventsIDs := make(map[string]struct{})
+
+	dig := Digest{
+		AcceptedIDs: make([]string, 0, len(sources)),
+		Users:       make([]UserDigest, 0, len(sources)),
+	}
+
+	userDigAccum := make(map[string]*DigAccum)
+	for _, es := range sourceResults {
+		for _, e := range es {
+			if len(e.ID) == 0 || len(e.UserID) == 0 {
+				continue
+			}
+			if _, ok := eventsIDs[e.ID]; ok {
+				continue
+			}
+			eventsIDs[e.ID] = struct{}{}
+			eventsIDs[e.UserID] = struct{}{}
+			dig.AcceptedIDs = append(dig.AcceptedIDs, e.ID)
+
+			if _, ok := userDigAccum[e.UserID]; !ok {
+				userDigAccum[e.UserID] = &DigAccum{
+					labels: make(map[string]struct{}),
+				}
+			}
+			uda := userDigAccum[e.UserID]
+			uda.ud.UserID = e.UserID
+			switch e.Kind {
+			case "like":
+				uda.ud.Likes++
+			case "bug":
+				uda.ud.Bugs++
+			case "label":
+				if _, ok := uda.labels[e.Label]; !ok {
+					uda.labels[e.Label] = struct{}{}
+					uda.ud.Labels = append(uda.ud.Labels, e.Label)
+				}
+			}
+
+		}
+	}
+
+	slToSort := make([]Pair, 0, len(userDigAccum))
+	for _, uda := range userDigAccum {
+		p := Pair{
+			id: uda.ud.UserID,
+			ud: uda.ud,
+		}
+		slToSort = append(slToSort, p)
+	}
+
+	slices.SortFunc(slToSort, func(a, b Pair) int {
+		return cmp.Compare(a.id, b.id)
+	})
+
+	usersDigests := make([]UserDigest, 0, len(slToSort))
+	for _, sl := range slToSort {
+		usersDigests = append(usersDigests, sl.ud)
+	}
+
+	dig.Users = usersDigests
+
+	return dig, nil
 }
 
 func main() {
