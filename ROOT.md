@@ -13,9 +13,9 @@
 | Раздел | Готовые материалы |
 |---|---:|
 | Code review Go | 6 |
-| Базовый Go | 4 |
-| Базы данных | 5 |
-| Лайвкодинг и практика | 3 |
+| Базовый Go | 6 |
+| Базы данных | 6 |
+| Лайвкодинг и практика | 4 |
 | Компьютерные основы | 1 |
 
 ## Быстрый срез: планируется
@@ -25,7 +25,7 @@
 | Code review Go | 5 |
 | Базовый Go | 5 |
 | Базы данных | 5 |
-| Лайвкодинг и практика | 3 |
+| Лайвкодинг и практика | 2 |
 | System Design | 2 |
 | Компьютерные основы | 1 |
 | Идиомы и паттерны Go | 1 |
@@ -59,6 +59,8 @@
 | B07 | Ошибки в Go: error interface, wrapping, errors.Is/As, sentinel/custom errors, panic vs error | - | - | Планируется |
 | B08 | Строки: immutable bytes, rune/UTF-8, len, slicing, conversions, strings.Builder | [internals.md](base-go/08-strings/internals.md), [review.md](base-go/08-strings/review.md) | [practice_output.go](base-go/08-strings/practice_output.go) | Готово |
 | B09 | Базовые примитивы конкурентности: goroutines, channels, mutex, WaitGroup, select, atomic | [review.md](base-go/09-concurrency-primitives/review.md) | [practice_output.go](base-go/09-concurrency-primitives/practice_output.go) | Готово |
+| B10 | Время в Go: time, context, timer/ticker, TTL, timeout и background refresh | [review.md](base-go/10-time-context-timers/review.md) | - | Готово |
+| B11 | Анонимные функции, callbacks, closures и передача поведения в конструктор | [review.md](base-go/11-anonymous-functions/review.md) | - | Готово |
 
 ## Базы данных
 
@@ -74,6 +76,7 @@
 | DB08 | PostgreSQL: планировщик запросов, статистика и EXPLAIN | - | - | Планируется |
 | DB09 | PostgreSQL: диагностика и эксплуатация индексов в проде | - | - | Планируется |
 | DB10 | Подсистемы хранения и извлечения данных: hash index, SSTable, LSM, B-tree, column storage | [review.md](database/10-storage-retrieval/review.md) | - | Готово |
+| DB11 | Репликация: leader/follower, lag, failover, multi-leader, quorum reads/writes | [review.md](database/11-replication/review.md) | - | Готово |
 
 ## Лайвкодинг и практика
 
@@ -81,7 +84,7 @@
 |---|---|---|---|
 | LC01 | Базовый тренировочный service layer для ревью | [review_task.go](review_task.go) | Готово |
 | LC02 | Практика по конкурентному service layer: cache, channels, WaitGroup, RWMutex | [main/aaa.go](main/aaa.go) | Готово |
-| LC03 | Highload RPC handler: тяжелое вычисление, кэш, ticker/timer, atomic | - | Планируется |
+| LC03 | Highload RPC handler: тяжелое вычисление, кэш, ticker/timer, atomic | [weather_handler_solution.go](live-coding/highload-weather-cache/weather_handler_solution.go) | Готово |
 | LC04 | Что выведет код: slices/maps/runtime snippets | - | Планируется |
 | LC05 | Большой файл на несколько ГБ: внешняя сортировка и стратегия решения | - | Планируется |
 | LC06 | Список лайвкодинг-задач с трекингом решено/не решено (строки, мапы, слайсы и далее) | [tasks.md](live-coding/tasks.md) | Готово |
