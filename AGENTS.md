@@ -35,6 +35,7 @@ LearnKeeper parses topic rows from Markdown tables under these section headings:
 - `## System Design`
 - `## Компьютерные основы`
 - `## Идиомы и паттерны Go`
+- `## Книги`
 
 This list documents the sections currently in use, not a hardcoded allow-list:
 LearnKeeper's `ROOT.md` parser accepts any `## Heading` (see `_section_heading`
@@ -79,6 +80,7 @@ Current prefixes:
 - `SD01`, `SD02`, ... for System Design
 - `CS01`, `CS02`, ... for Компьютерные основы
 - `GI01`, `GI02`, ... for Идиомы и паттерны Go
+- `BK01`, `BK02`, ... for Книги
 
 When adding a topic, use the next id in the relevant section. Do not reuse ids for
 a different topic. Do not renumber old topics just to make the table prettier.
@@ -97,6 +99,12 @@ LearnKeeper only pulls `ready` topics into quizzes, review scheduling, and
 "Читать материал" - keeping this section `planned` is how it stays a plain
 reference guide and never gets quizzed or scheduled. Do not "fix" this by
 flipping it to `Готово`.
+
+Another deliberate exception: top-level book index topics under `## Книги` stay
+`Планируется` even when their `index.md` exists. These rows are navigation
+entries, not quiz units. LearnKeeper expands supported book index tables into
+chapter-level trainable topics, so the ready/planned status for actual chapter
+reviews lives in the book index table, not in the `BKxx` row.
 
 ## Links and material fingerprints
 
@@ -201,6 +209,28 @@ Follow the existing layout:
 - Идиомы и паттерны Go: `go-idioms/NN-topic-slug/guide.md`. Reference/pattern
   material ("how idiomatic Go does X and why"), not interview-topic prep -
   keep the row status `Планируется` per the note in "Status values" above.
+- Книги: `books/book-slug/index.md`. The `ROOT.md` row is a book-level
+  navigation topic, while chapter review materials are linked from the book
+  index table. Keep the book row `Планируется`; LearnKeeper reads supported
+  book index tables and turns their chapter rows into trainable topics.
+
+Supported book index shape:
+
+```md
+| Topic id | Глава | Разбор | Материал | Статус |
+|---|---|---|---|---|
+| DB10 | Chapter 3: Storage and Retrieval | Подсистемы хранения и извлечения данных | [review.md](../../database/10-storage-retrieval/review.md) | Готово |
+```
+
+Rules for book indexes:
+
+- `Topic id` is still the stable LearnKeeper topic id. Reuse the historical id
+  when moving an existing topic from `ROOT.md` into a book index.
+- `Разбор` is the title LearnKeeper shows in Telegram and stores in statistics.
+- `Материал` links to the actual review file, relative to the index file.
+- `Готово` chapter rows are trainable and can appear in reviews, quizzes,
+  open questions, explain-checks, reading flows, and daily random quizzes.
+- The top-level `BKxx` row is not trainable; it only groups/navigates chapters.
 
 Use natural, readable slugs. Existing Russian content is fine; file paths are
 mostly Latin slugs today, so prefer that style unless there is a reason not to.

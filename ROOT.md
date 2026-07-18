@@ -14,7 +14,8 @@
 |---|---:|
 | Code review Go | 6 |
 | Базовый Go | 6 |
-| Базы данных | 6 |
+| Базы данных | 3 |
+| Книги / DDIA | 3 |
 | Лайвкодинг и практика | 4 |
 | Компьютерные основы | 1 |
 
@@ -29,6 +30,7 @@
 | System Design | 2 |
 | Компьютерные основы | 1 |
 | Идиомы и паттерны Go | 1 |
+| Книги | 1 |
 
 ## Code Review Go
 
@@ -70,13 +72,22 @@
 | DB02 | PostgreSQL: MVCC, VACUUM, версии строк, память и bloat | [review.md](database/02-postgresql-mvcc-vacuum-bloat/review.md) | - | Готово |
 | DB03 | PostgreSQL: физическое хранение, страницы, buffers, cache и I/O | [review.md](database/03-postgresql-storage-pages-buffers/review.md) | - | Готово |
 | DB04 | PostgreSQL: уровни изоляции, аномалии транзакций и бизнесовые гонки | [review.md](database/04-postgresql-isolation-anomalies/review.md) | - | Готово |
-| DB05 | Модели данных и языки запросов: relational, document, graph | [review.md](database/05-data-models-query-languages/review.md) | - | Готово |
 | DB06 | Cassandra, Redis, ClickHouse: когда и зачем использовать | - | - | Планируется |
 | DB07 | Массовые операции: delete/update, bloat, locks, батчи, partitioning | - | - | Планируется |
 | DB08 | PostgreSQL: планировщик запросов, статистика и EXPLAIN | - | - | Планируется |
 | DB09 | PostgreSQL: диагностика и эксплуатация индексов в проде | - | - | Планируется |
-| DB10 | Подсистемы хранения и извлечения данных: hash index, SSTable, LSM, B-tree, column storage | [review.md](database/10-storage-retrieval/review.md) | - | Готово |
-| DB11 | Репликация: leader/follower, lag, failover, multi-leader, quorum reads/writes | [review.md](database/11-replication/review.md) | - | Готово |
+
+## Книги
+
+Книжные разборы устроены как верхнеуровневые индексы: строка книги ведет в
+отдельный `index.md`, а уже внутри него лежит оглавление готовых разборов глав.
+Строки книг держим в статусе "Планируется": это навигация, а не тема для
+квиза. LearnKeeper раскрывает поддержанные книжные индексы и тренирует уже
+готовые строки глав внутри `index.md`.
+
+| # | Тема | Материал | Практика | Статус |
+|---|---|---|---|---|
+| BK01 | Martin Kleppmann - Designing Data-Intensive Applications | [index.md](books/ddia/index.md) | - | Планируется |
 
 ## Лайвкодинг и практика
 
