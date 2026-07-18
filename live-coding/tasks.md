@@ -21,7 +21,9 @@
 | LC06-3 | Примитивы синхронизации + map/slice: конкурентная загрузка и детерминированный merge | [03-release-digest-sync/release_digest_sync.go](03-release-digest-sync/release_digest_sync.go) | Не решено |
 | LC06-4 | Односвязный список: указатели, вставка, удаление, обход | [04-linked-list/linked_list.go](04-linked-list/linked_list.go) | Не решено |
 | LC06-5 | Таймеры: delayed batch flusher через time.Timer/time.AfterFunc | [05-delayed-batch-flusher/delayed_batch_flusher.go](05-delayed-batch-flusher/delayed_batch_flusher.go) | Не решено |
-| LC06-6 | Анонимные функции: простой callback для обхода активных пользователей | [06-anonymous-callback/anonymous_callback.go](06-anonymous-callback/anonymous_callback.go) | Не решено |
+| LC06-6 | Анонимные функции: простой callback для обхода активных пользователей | [06-anonymous-callback/anonymous_callback.go](06-anonymous-callback/anonymous_callback.go) | Решено |
+| LC06-7 | Анонимные функции: pipeline через callbacks, closure и nil validation | [07-event-pipeline-callbacks/event_pipeline_callbacks.go](07-event-pipeline-callbacks/event_pipeline_callbacks.go) | Не решено |
+| LC06-8 | Анонимные функции: обработка слайса через callback-реализации и локальную функцию | [08-task-report-callbacks/task_report_callbacks.go](08-task-report-callbacks/task_report_callbacks.go) | Не решено |
 
 ## Как сдать решение
 

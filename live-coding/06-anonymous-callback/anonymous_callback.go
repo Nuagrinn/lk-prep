@@ -31,6 +31,11 @@ type User struct {
 
 func VisitActiveUsers(users []User, visit func(User)) {
 	// TODO: вызови visit только для active users.
+	for _, user := range users {
+		if user.Active {
+			visit(user)
+		}
+	}
 }
 
 func main() {
@@ -39,13 +44,13 @@ func main() {
 		{ID: 2, Name: "Bob", Active: false},
 		{ID: 3, Name: "Kate", Active: true},
 	}
-
+	
 	var names []string
-
+	
 	VisitActiveUsers(users, func(user User) {
 		names = append(names, user.Name)
 	})
-
+	
 	expect("active users visited", names, []string{"Ann", "Kate"})
 }
 
@@ -54,6 +59,6 @@ func expect(name string, got, want []string) {
 		fmt.Println("OK:", name)
 		return
 	}
-
+	
 	fmt.Printf("MISMATCH: %s\n got: %#v\nwant: %#v\n", name, got, want)
 }
