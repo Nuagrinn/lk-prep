@@ -13,7 +13,7 @@
 | Раздел | Готовые материалы |
 |---|---:|
 | Code review Go | 6 |
-| Базовый Go | 6 |
+| Базовый Go | 7 |
 | Базы данных | 3 |
 | Книги / DDIA | 3 |
 | Лайвкодинг и практика | 4 |
@@ -58,11 +58,12 @@
 | B04 | GC и аллокатор: heap/stack, escape analysis, pauses | - | - | Планируется |
 | B05 | Интерфейсы, nil interface, method set, duck typing | - | - | Планируется |
 | B06 | Указатели: value vs pointer, nil, escape analysis, receiver, shared mutable state | - | - | Планируется |
-| B07 | Ошибки в Go: error interface, wrapping, errors.Is/As, sentinel/custom errors, panic vs error | - | - | Планируется |
+| B07 | Ошибки в Go: error interface, wrapping, errors.Is/As, sentinel/custom errors, panic vs error | [review.md](base-go/07-errors/review.md) | - | Готово |
 | B08 | Строки: immutable bytes, rune/UTF-8, len, slicing, conversions, strings.Builder | [internals.md](base-go/08-strings/internals.md), [review.md](base-go/08-strings/review.md) | [practice_output.go](base-go/08-strings/practice_output.go) | Готово |
 | B09 | Базовые примитивы конкурентности: goroutines, channels, mutex, WaitGroup, select, atomic | [review.md](base-go/09-concurrency-primitives/review.md) | [practice_output.go](base-go/09-concurrency-primitives/practice_output.go) | Готово |
 | B10 | Время в Go: time, context, timer/ticker, TTL, timeout и background refresh | [review.md](base-go/10-time-context-timers/review.md) | - | Готово |
 | B11 | Анонимные функции, callbacks, closures и передача поведения в конструктор | [review.md](base-go/11-anonymous-functions/review.md) | - | Готово |
+| B12 | Дженерики в Go: type parameters, constraints, type sets, comparable, inference и idiomatic use | - | - | Планируется |
 
 ## Базы данных
 
