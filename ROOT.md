@@ -17,7 +17,7 @@
 | Базы данных | 3 |
 | Книги / DDIA | 5 |
 | Лайвкодинг и практика | 4 |
-| System Design | 1 |
+| System Design | 2 |
 | Компьютерные основы | 1 |
 
 ## Быстрый срез: планируется
@@ -109,6 +109,7 @@
 | SD01 | System Design: Transactional Outbox | - | - | Планируется |
 | SD02 | System Design: rate limiting — token bucket, leaky bucket, распределённые счётчики, backpressure | - | - | Планируется |
 | SD03 | Идемпотентность: безопасные ретраи, API-контракты, дубликаты и side effects | [review.md](system-design/03-idempotency/review.md) | - | Готово |
+| SD04 | Kafka: topics, partitions, consumer groups и надежная доставка событий | [review.md](system-design/04-kafka/review.md) | - | Готово |
 
 ## Компьютерные основы
 
