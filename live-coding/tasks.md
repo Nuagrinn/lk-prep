@@ -24,6 +24,7 @@
 | LC06-6 | Анонимные функции: простой callback для обхода активных пользователей | [06-anonymous-callback/anonymous_callback.go](06-anonymous-callback/anonymous_callback.go) | Решено |
 | LC06-7 | Анонимные функции: pipeline через callbacks, closure и nil validation | [07-event-pipeline-callbacks/event_pipeline_callbacks.go](07-event-pipeline-callbacks/event_pipeline_callbacks.go) | Не решено |
 | LC06-8 | Анонимные функции: обработка слайса через callback-реализации и локальную функцию | [08-task-report-callbacks/task_report_callbacks.go](08-task-report-callbacks/task_report_callbacks.go) | Не решено |
+| LC06-9 | Кэш: in-memory LRU с TTL и потокобезопасным API | [09-lru-cache-ttl/lru_cache_ttl.go](09-lru-cache-ttl/lru_cache_ttl.go) | Не решено |
 
 ## Как сдать решение
 
